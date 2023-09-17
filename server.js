@@ -18,6 +18,20 @@ const connection = mysql.createConnection({
 console.log('Connected to employees_db database')
 );
 
+connection.connect(function (err) {
+    if (err) throw err;
+    console.log('connected as id' + connection.threadId);
+    console.log(` ╔═══╗─────╔╗──────────────╔═╗╔═╗
+    ║╔══╝─────║║──────────────║║╚╝║║
+    ║╚══╦╗╔╦══╣║╔══╦╗─╔╦══╦══╗║╔╗╔╗╠══╦═╗╔══╦══╦══╦═╗
+    ║╔══╣╚╝║╔╗║║║╔╗║║─║║║═╣║═╣║║║║║║╔╗║╔╗╣╔╗║╔╗║║═╣╔╝
+    ║╚══╣║║║╚╝║╚╣╚╝║╚═╝║║═╣║═╣║║║║║║╔╗║║║║╔╗║╚╝║║═╣║
+    ╚═══╩╩╩╣╔═╩═╩══╩═╗╔╩══╩══╝╚╝╚╝╚╩╝╚╩╝╚╩╝╚╩═╗╠══╩╝
+    ───────║║──────╔═╝║─────────────────────╔═╝║
+    ───────╚╝──────╚══╝─────────────────────╚══╝`)
+});
+    firstPrompt();
+
 // function for inquirer to get prompts 
 function firstPrompt() {
 

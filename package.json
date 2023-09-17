@@ -1,7 +1,15 @@
 {
+  "name": "employee-tracker",
+  "main": "server.js",
   "dependencies": {
     "i": "^0.3.7",
     "inquirer": "^8.2.4",
     "mysql": "^2.18.1"
-  }
+  },
+
+    "scripts": {
+      "start":"node server.js"
+    
+  },
+  "devDependencies":{}
 }
