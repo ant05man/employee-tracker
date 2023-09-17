@@ -117,3 +117,56 @@ function viewEmployeesByDepartment() {
         promptDepartment(departmentChoices);
     });
     }
+
+    inquirer
+        .prompt([
+    {
+        type: 'list',
+        name: 'departmentId',
+        message: "Which department do you choose",
+        choices: departmentChoices
+    }
+    ])
+    .then(function (answer) {
+        console.log('answer ',answer.departmentId);
+
+        var query =
+        `SELECT e.id, e.first_name, e.last_name, r.title, d.name AS department 
+  FROM employee e
+  JOIN role r
+	ON e.role_id = r.id
+  JOIN department d
+  ON d.id = r.department_id
+  WHERE d.id = ?`
+
+      connection.query(query, answer.departmentId, function (err, res) {
+        if (err) throw err;
+
+        console.table("response ", res);
+        console.log(res.affectedRows + "Employees are viewed!\n");
+
+        firstPrompt();
+      });
+    });
+
+    // Create a employee array
+function addEmployee() {
+    console.log("Inserting an employee!")
+  
+    var query =
+      `SELECT r.id, r.title, r.salary 
+        FROM role r`
+  
+    connection.query(query, function (err, res) {
+      if (err) throw err;
+  
+      const roleChoices = res.map(({ id, title, salary }) => ({
+        value: id, title: `${title}`, salary: `${salary}`
+      }));
+  
+      console.table(res);
+      console.log("RoleToInsert!");
+  
+      promptInsert(roleChoices);
+    });
+  }
