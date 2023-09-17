@@ -118,7 +118,9 @@ function viewEmployeesByDepartment() {
     });
     }
 
-    inquirer
+    function promptDepartment(departmentChoices) {
+    
+        inquirer
         .prompt([
     {
         type: 'list',
@@ -148,6 +150,7 @@ function viewEmployeesByDepartment() {
         firstPrompt();
       });
     });
+    }
 
     // Create a employee array
 function addEmployee() {
@@ -375,6 +378,7 @@ function updateEmployeeRole() {
       const departmentChoices = res.map(({ id, name }) => ({
         value: id, name: `${id} ${name}`
       }));
+
   
       console.table(res);
       console.log("Department array!");
