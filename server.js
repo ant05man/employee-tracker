@@ -6,7 +6,7 @@ const connection = mysql.createConnection({
     host: 'localhost',
 
     //PORT
-    port: 3001,
+    port: 3306,
 
     // Your username
     user: 'root',
@@ -73,7 +73,7 @@ function firstPrompt() {
     console.log('Viewing employeess');
 
     var query =
-    `SELECT e.id e.first_name, e.last_name, r.title, d.name AS department, r.salary, CONCAT(m.first_name, '',m.last_name) AS manager
+    `SELECT e.id, e.first_name, e.last_name, r.title, d.name AS department, r.salary, CONCAT(m.first_name, '',m.last_name) AS manager
     FROM employee e
     LEFT JOIN role r
       ON e.role_id = r.id
@@ -103,7 +103,8 @@ function viewEmployeesByDepartment() {
     FROM employee e
     LEFT JOIN role r
         ON e.role_id = r.id
-    LEFT JOIN department_id
+    LEFT JOIN department d
+    ON d.id = r.department_id
     GROUP BY d.id, d.name`
 
     connection.query(query, function (err,res) {
@@ -413,8 +414,8 @@ function updateEmployeeRole() {
         var query = `INSERT INTO role SET ?`
   
         connection.query(query, {
-          title: answer.title,
-          salary: answer.salary,
+          title: answer.roleTitle,
+          salary: answer.roleSalary,
           department_id: answer.departmentId
         },
           function (err, res) {
