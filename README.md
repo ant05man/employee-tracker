@@ -6,12 +6,13 @@
 -  User can update an employee role, add a role, add a department, add an employee
 
 ## Installation
--  Open command-line
+-  Create repository in GitHub
+-  Git clone URL in command-line
+-  Code . --> Opens VSCode
 -  mysql -u root -p --> Enter password
 -  npm install inquirer V 8.2.4
 -  npm install i
 -  npm install mysql
--  Enter VScode
 
 ## Usage(Demo)
 https://drive.google.com/file/d/11kYPSP5hmCzb-RgS_YyvP3Torc6_gQ0I/view
