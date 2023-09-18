@@ -229,7 +229,7 @@ function addEmployee() {
             if (err) throw err;
   
             console.table(res);
-            console.log(res.insertedRows + "Inserted successfully!\n");
+            console.log("Inserted successfully!\n");
   
             firstPrompt();
           });
