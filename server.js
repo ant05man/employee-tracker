@@ -1,6 +1,6 @@
 const mysql = require('mysql');
 const inquirer = require('inquirer');
-
+require('console.table');
 //mysql connection
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -12,11 +12,9 @@ const connection = mysql.createConnection({
     user: 'root',
 
     // Your password
-    password: '',
+    password: 'Rockleespirit09!',
     database: 'employees_db'
-},
-console.log('Connected to employees_db database')
-);
+});
 
 connection.connect(function (err) {
     if (err) throw err;
@@ -29,9 +27,9 @@ connection.connect(function (err) {
     ╚═══╩╩╩╣╔═╩═╩══╩═╗╔╩══╩══╝╚╝╚╝╚╩╝╚╩╝╚╩╝╚╩═╗╠══╩╝
     ───────║║──────╔═╝║─────────────────────╔═╝║
     ───────╚╝──────╚══╝─────────────────────╚══╝`)
-});
     firstPrompt();
 
+  });
 // function for inquirer to get prompts 
 function firstPrompt() {
 
@@ -56,7 +54,7 @@ function firstPrompt() {
             break;
   
           case "View Employees by Department":
-            viewEmployeeByDepartment();
+            viewEmployeesByDepartment();
             break;
         
           case "Add Employee":
@@ -84,7 +82,7 @@ function firstPrompt() {
 
   // View Employees
   function viewEmployee() {
-    console.log('Viewing employeess');
+    console.log('Viewing employees');
 
     var query =
     `SELECT e.id, e.first_name, e.last_name, r.title, d.name AS department, r.salary, CONCAT(m.first_name, '',m.last_name) AS manager
@@ -119,7 +117,7 @@ function viewEmployeesByDepartment() {
         ON e.role_id = r.id
     LEFT JOIN department d
     ON d.id = r.department_id
-    GROUP BY d.id, d.name`
+    GROUP BY d.id, d.name, r.salary`
 
     connection.query(query, function (err,res) {
         if (err) throw err;
