@@ -17,5 +17,11 @@
 ## Usage(Demo)
 https://drive.google.com/file/d/11kYPSP5hmCzb-RgS_YyvP3Torc6_gQ0I/view
 
+## Features
+-  View all employees
+-  Add a role
+-  Add an employee
+-  Update an employee role
+-  Delete an employee
 
 
