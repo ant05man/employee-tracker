@@ -4,7 +4,7 @@
   "dependencies": {
     "console.table": "^0.10.0",
     "i": "^0.3.7",
-    "inquirer": "^8.2.4",
+    "inquirer": "^8.2.6",
     "mysql": "^2.18.1"
   },
   "scripts": {

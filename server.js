@@ -37,7 +37,7 @@ function firstPrompt() {
       .prompt({
         type: "list",
         name: "task",
-        message: "Would you like to do?",
+        message: "What would you like to do?",
         choices: [
           "View Employees",
           "View Employees by Department",
@@ -45,6 +45,7 @@ function firstPrompt() {
           "Remove Employees",
           "Update Employee Role",
           "Add Role",
+          "Add a new Department",
           "End"]
       })
       .then(function ({ task }) {
@@ -72,7 +73,10 @@ function firstPrompt() {
           case "Add Role":
             addRole();
             break;
-  
+
+          case "Add a new Department":
+            addDepartment();
+            break;
           case "End":
             connection.end();
             break;
@@ -445,5 +449,26 @@ function updateEmployeeRole() {
           });
   
       });
-  }
 
+  }
+  function addDepartment(departmentChoices) {
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "departmentName",
+          message: "Enter the name of the new department:",
+        }
+      ])
+      .then(function (answer) {
+        // Insert the new department into the database
+        var query = "INSERT INTO department (name) VALUES (?)";
+        connection.query(query, [answer.departmentName], function (err, res) {
+          if (err) throw err;
+          console.log(`New department "${answer.departmentName}" added successfully!\n`);
+          firstPrompt(); // Return to the main menu
+        });
+      });
+
+      
+}
